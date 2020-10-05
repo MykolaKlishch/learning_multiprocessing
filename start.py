@@ -12,11 +12,14 @@ if __name__ == "__main__":
 
     start = time.perf_counter()
 
-    p1 = multiprocessing.Process(target=do_something, args=(), kwargs={})
-    p2 = multiprocessing.Process(target=do_something, args=(), kwargs={})
+    p1 = multiprocessing.Process(target=do_something)
+    p2 = multiprocessing.Process(target=do_something)
 
     p1.start()
     p2.start()
+
+    p1.join()
+    p2.join()
 
     finish = time.perf_counter()
 
