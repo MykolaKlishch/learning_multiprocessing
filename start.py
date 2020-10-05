@@ -2,9 +2,9 @@ import multiprocessing
 import time
 
 
-def do_something():
-    print('Sleeping for 1 second...')
-    time.sleep(1)
+def do_something(seconds=1):
+    print(f'Sleeping for {seconds} second(1)...')
+    time.sleep(seconds)
     print('Done Sleeping...')
 
 
@@ -15,7 +15,9 @@ if __name__ == "__main__":
     processes = []
 
     for _ in range(10):
-        p = multiprocessing.Process(target=do_something)
+        p = multiprocessing.Process(
+            target=do_something, args=(1.5,)
+        )
         p.start()
         processes.append(p)
 
