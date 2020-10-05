@@ -5,7 +5,7 @@ import time
 def do_something(seconds=1):
     print(f'Sleeping for {seconds} second(s)...')
     time.sleep(seconds)
-    return 'Done Sleeping...'
+    return f'Done Sleeping {seconds} second(s)...'
 
 
 if __name__ == "__main__":
@@ -13,11 +13,13 @@ if __name__ == "__main__":
     start = time.perf_counter()
 
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        f1 = executor.submit(do_something, 1)
-        print(f1.result())
+        secs = [5, 4, 3, 2, 1]
+        results = executor.map(do_something, secs)
+        for result in results:
+            print(result)
 
-    processes = []
-
+    # processes = []
+    #
     # for _ in range(10):
     #     p = multiprocessing.Process(
     #         target=do_something, args=(1.5,)
